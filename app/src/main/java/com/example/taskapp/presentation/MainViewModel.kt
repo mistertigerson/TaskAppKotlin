@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.taskapp.data.ShopListRepositoryImpl
 import com.example.taskapp.data.ShopListRepositoryImpl.editShopItem
-import com.example.taskapp.domain.AddShopItemUseCase
-import com.example.taskapp.domain.DeleteItemUseCase
-import com.example.taskapp.domain.GetShopItemListUseCase
-import com.example.taskapp.domain.ShopItem
+import com.example.taskapp.domain.*
 
 class MainViewModel : ViewModel() {
 
@@ -17,6 +14,8 @@ class MainViewModel : ViewModel() {
     private val addShopItemUseCase = AddShopItemUseCase(repository)
     private val getShopItemListUseCase = GetShopItemListUseCase(repository)
     private val deleteItemUseCase = DeleteItemUseCase(repository)
+    private val editShopItemUseCase = EditShopItemUseCase(repository)
+    private val getShopItemUseCase = GetShopItemUseCase(repository)
 
     private val _shopList = MutableLiveData<List<ShopItem>>()
     public val shopList: LiveData<List<ShopItem>> = _shopList
@@ -41,10 +40,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun editShopItemFun(shopItem: ShopItem, name: String){
-        editShopItem(shopItem, name)
+        editShopItemUseCase.editShopItem(shopItem,name)
     }
 
     fun getShopItemFun(shopItem: ShopItem){
-        ShopListRepositoryImpl.getShopItem(shopItem)
+        getShopItemUseCase.getShopItem(shopItem)
     }
 }
