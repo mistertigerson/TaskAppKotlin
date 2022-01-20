@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
 
     private fun addShopItemfun() {
-        viewModel.addShopItem(ShopItem("Potato", 2, false, 1))
+        viewModel.addShopItem(ShopItem("Potato", 2, false))
         viewModel.getShopItemList()
 
     }
